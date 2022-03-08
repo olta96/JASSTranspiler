@@ -1,0 +1,128 @@
+#import "testing"
+
+class Foo {
+
+    int num = 0;
+
+    real realValue = 1.6;
+
+public:
+
+    int getNum() const {
+        return num;
+    }
+
+    void setNum(const int val) {
+        num = val;
+    }
+
+}
+Foo
+/*
+Foo
+1multiline comment
+
+*/
+class Bar {
+
+    const Foo const foo;
+
+public:
+
+    int getFoo(const int newValue) {
+        return foo.getNum();
+    }
+
+}
+
+
+real a123legalName;
+
+//real 123illegalName;
+
+//real 1.6.7
+
+
+
+class String
+{
+    string value;
+
+public:
+
+    String(string value)
+    {
+        this.value = value;
+    }
+
+    string property Value
+    {
+        return value;
+    }
+
+    void property Value(string value)
+    {
+        this.value = value;
+    }
+
+    bool isEmpty()
+    {
+        return StringLength(value) == 0;
+    }
+
+    int length()
+    {
+        return StringLength(value);
+    }
+
+    ~String()
+    {
+        value = null;
+    }
+}
+
+class Pair<TFirst, TSecond>
+{
+
+    TFirst first;
+    TSecond second;
+
+public:
+
+    Pair(TFirst first, TSecond second)
+    {
+        this.first = first;
+        this.second = second;
+    }
+
+    TFirst property First
+    {
+        return first;
+    }
+
+    void property First(TFirst newValue)
+    {
+        first = newValue;
+    }
+
+    TSecond property Second
+    {
+        return second;
+    }
+
+    void property Second(TSecond newValue)
+    {
+        second = newValue;
+    }
+
+}
+
+String s = new String("test");
+
+s.Value = "newTest";
+
+BJDebugMsg(s.Value);
+
+delete s;
+
+bool bTest = true;

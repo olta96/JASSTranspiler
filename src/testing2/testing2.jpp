@@ -1,0 +1,19 @@
+ // comment
+real rVal1 = 1.;
+real rVal2 = .6; //problem
+real rVal3 = 1.6;
+real rVal4 = 01.6;
+
+'13aa'
+
+if a < 26 {
+
+} elseif c < b && q > t {
+
+}
+
+class C   <   int, int<TKey>, _flex>
+{
+
+}
+

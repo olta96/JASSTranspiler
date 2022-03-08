@@ -1,0 +1,21 @@
+#pragma once
+
+namespace Tokenizer
+{
+	enum class TokenType
+	{
+		KEYWORD,
+		OPERATOR,
+		IDENTIFIER,
+		STATEMENT_END,
+		STRING,
+		FOUR_CC,
+		CONSTANT,
+		PAREN_OPEN,
+		PAREN_CLOSE,
+		ACCESS_MEMBER_SYMBOL,
+		ACCESS_MODIFIER_DECL_END,
+		COMMA,
+		DESTRUCTOR_SYMBOL,
+	};
+}

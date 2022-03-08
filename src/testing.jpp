@@ -1,0 +1,11 @@
+const Bar const bar = new Bar();
+
+const int fooNum = bar.getFoo();
+
+string s1 = "    Comment inside string // no problem //at all!";
+
+string s2 = "new line after string .:,,;;.//.,;., "
+;
+#import "testing2/testing2"
+
+SomeFunc();
