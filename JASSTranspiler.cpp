@@ -113,7 +113,9 @@ void transpile
 
 
 	Tokenizer::Tokenizer tokenizer(preprocessedTokensFiles);
-	tokenizer.tokenize();
+	const Tokenizer::Tokens& tokens = tokenizer.tokenize();
+
+	
 }
 
 
