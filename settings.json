@@ -1,2 +1,5 @@
 {
+    "sourceFolderPath": "src",
+    "outFolderPath": "out",
+    "mainSourceFilename": "main"
 }
