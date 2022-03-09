@@ -5,7 +5,15 @@
 namespace Preprocessor
 {
 	LineTokenizer::LineTokenizer(const std::string& line, PreprocessedTokens& tokensDestination, const int& lineCount, const std::string& filePath, bool& mulitLineComment)
-		: tokensDestination(tokensDestination), lineCount(lineCount), filePath(filePath), begin(line.cbegin()), end(line.cend()), lineIt(begin), mulitLineComment(mulitLineComment) {}
+		:
+			tokensDestination(tokensDestination),
+			lineCount(lineCount),
+			filePath(filePath),
+			begin(line.cbegin()),
+			end(line.cend()),
+			lineIt(begin),
+			mulitLineComment(mulitLineComment)
+	{}
 
 	void LineTokenizer::tokenize()
 	{
