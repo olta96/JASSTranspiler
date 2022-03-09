@@ -43,27 +43,27 @@ However using the proposed C-like syntax where statements are separated with `;`
 ```
 // JASS++
 ComplexObject complexObject = ComplexObject.create()
-																				.debug("Let's build team1Object.")
-																				.team1Object()
-																				.append(applicationContext1)
-																				.debug("Let's build team2Object.")
-																				.team2Object()
-																				.append(applicationContext2)
-																				.debug("All done.")
-																				.build();
+					   .debug("Let's build team1Object.")
+					   .team1Object()
+					   .append(applicationContext1)
+					   .debug("Let's build team2Object.")
+					   .team2Object()
+					   .append(applicationContext2)
+					   .debug("All done.")
+					   .build();
 ```
 There is a way to do this using multi line comments in JASS but it doesn´t look very nice.
 ```
 // JASS
 local ComplexObject complexObject = ComplexObject.create()\*
-																					  */.debug("Let's build team1Object.")\*
-																					  */.team1Object()\*
-																					  */.append(applicationContext1)\*
-																					  */.debug("Let's build team2Object.")\*
-																					  */.team2Object()\*
-																					  */.append(applicationContext2)\*
-																					  */.debug("All done.")\*
-																					  */.build()
+					       */.debug("Let's build team1Object.")\*
+					       */.team1Object()\*
+					       */.append(applicationContext1)\*
+					       */.debug("Let's build team2Object.")\*
+					       */.team2Object()\*
+					       */.append(applicationContext2)\*
+					       */.debug("All done.")\*
+					       */.build()
 ```
 Furthermore, due to the new line separator in JASS, we can not make our code more compact if we wanted to:
 ```
