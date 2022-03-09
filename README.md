@@ -139,6 +139,6 @@ Imports are defined using the keyword `#import` followed by the semi-absolute pa
 
 Each path is relative to the given source folder compiler option ("sourceFolderPath").
 
-Imports are merely a preprocessor text-macro and they are not equivalent to the vJass imports `//! import`. Subsequently the Transpiler allows circular imports as the code will be compiled to a single `.j` file.
+Imports are merely a preprocessor text-macro and they are not equivalent to the vJass imports `//! import`. Subsequently the Transpiler allows circular imports as the code will be compiled to a single `.j` file. This also means that two files can reference each others members without importing each other as long as both files are imported somewhere in the project.
 
 Note: Files are not scopes. You can not define exports as everything from a file is included when imported.
