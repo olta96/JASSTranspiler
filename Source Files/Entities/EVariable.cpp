@@ -2,5 +2,5 @@
 
 namespace Entities
 {
-	EVariable::EVariable(const std::string& name, const EType& type) : Entity(name), type(type) {}
+	EVariable::EVariable(const EType& type, const std::string& name) : Entity(name), type(type) {}
 }

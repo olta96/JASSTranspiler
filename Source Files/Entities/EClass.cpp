@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-	EClass::EClass(const std::string& name) : Entity(name) {}
+	EClass::EClass(const std::string& name) : EType(name) {}
 	
 	void EClass::pushTemplateTypeName(const std::string& templateTypeName)
 	{

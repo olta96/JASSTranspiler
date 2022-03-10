@@ -9,7 +9,7 @@ namespace Entities
 		const EType& type;
 
 	public:
-		EVariable(const std::string& name, const EType& type);
+		EVariable(const EType& type, const std::string& name);
 
 	};
 }

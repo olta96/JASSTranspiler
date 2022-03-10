@@ -2,13 +2,19 @@
 #include "Entity.h"
 #include "AccessModifiable.h"
 #include "StaticModifiable.h"
+#include "EGetProperty.h"
+#include "ESetProperty.h"
 
 namespace Entities
 {
-	class EProperty : public Entity, public AccessModifiable, public StaticModifiable
+	class EProperty : public Entity
 	{
+		EGetProperty* getProperty = nullptr;
+		ESetProperty* setProperty = nullptr;
+
 	public:
 		EProperty(const std::string& name);
 
+		~EProperty();
 	};
 }
