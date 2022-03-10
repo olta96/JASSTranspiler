@@ -120,6 +120,7 @@ namespace Tokenizer
 		// Declaration Keywords
 		inline const string KW_CONST = "const";
 		inline const string KW_ARRAY = "array";
+		inline const string KW_FUNCTION = "function";
 
 		// OO Keywords
 		inline const string KW_CLASS = "class";
@@ -156,6 +157,7 @@ namespace Tokenizer
 
 			KW_CONST,
 			KW_ARRAY,
+			KW_FUNCTION,
 
 			KW_CLASS,
 			KW_THIS,
@@ -293,7 +295,6 @@ namespace Tokenizer
 		inline const string UR_KW_ENDGLOBALS = "endglobals";
 		inline const string UR_KW_CREATE = "create";
 		inline const string UR_KW_DESTROY = "destroy";
-		inline const string UR_KW_FUNCTION = "function";
 		inline const string UR_KW_ENDFUNCTION = "endfunction";
 		inline const string UR_KW_STRUCT = "struct";
 		inline const string UR_KW_METHOD = "method";
@@ -339,7 +340,6 @@ namespace Tokenizer
 			UR_KW_ENDGLOBALS,
 			UR_KW_CREATE,
 			UR_KW_DESTROY,
-			UR_KW_FUNCTION,
 			UR_KW_ENDFUNCTION,
 			UR_KW_STRUCT,
 			UR_KW_METHOD,
