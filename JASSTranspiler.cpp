@@ -5,6 +5,7 @@
 #include "Header Files/Utilities/HighResolutionClock/HighResolutionClock.h"
 #include "Header Files/Utilities/UserOutput/UserOutput.h"
 #include "Header Files/Globals/Globals.h"
+#include "Header Files/EntityFactory/EntityFactory.h"
 
 #ifdef _DEBUG
 #include <iostream>
@@ -115,7 +116,8 @@ void transpile
 	Tokenizer::Tokenizer tokenizer(preprocessedTokensFiles);
 	const Tokenizer::Tokens& tokens = tokenizer.tokenize();
 
-	
+	EntityFactory::EntityFactory entityFactory(tokens);
+	entityFactory.buildEntities();
 }
 
 

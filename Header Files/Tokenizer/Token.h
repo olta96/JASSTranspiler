@@ -15,6 +15,9 @@ namespace Tokenizer
 		const TokenType& getTokenType() const;
 		const Preprocessor::PreprocessedToken& getValue() const;
 
+		bool is(const std::string& toMatch) const;
+		bool is(const char& toMatch) const;
+
 	};
 
 	using Tokens = std::vector<Token>;

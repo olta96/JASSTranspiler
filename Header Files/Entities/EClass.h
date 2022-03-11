@@ -16,8 +16,8 @@ namespace Entities
 		std::vector<EOperator> operators;
 		bool isTemplate = false;
 		std::vector<std::string> templateTypeNames;
-		EMethod constructor;
-		EMethod destructor;
+		const EMethod* constructor = nullptr;
+		const EMethod* destructor = nullptr;
 
 	public:
 		EClass(const std::string& name);

@@ -1,6 +1,8 @@
 #pragma once
 #include "Entity.h"
 #include "CarriesBody.h"
+#include "AccessModifiable.h"
+#include "StaticModifiable.h"
 
 namespace Entities
 {

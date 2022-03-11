@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Returner.h"
 #include "CarriesBody.h"
+#include "AccessModifiable.h"
+#include "StaticModifiable.h"
 
 namespace Entities
 {

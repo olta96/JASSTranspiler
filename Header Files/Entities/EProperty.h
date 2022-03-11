@@ -9,8 +9,8 @@ namespace Entities
 {
 	class EProperty : public Entity
 	{
-		EGetProperty* getProperty = nullptr;
-		ESetProperty* setProperty = nullptr;
+		const EGetProperty* getProperty = nullptr;
+		const ESetProperty* setProperty = nullptr;
 
 	public:
 		EProperty(const std::string& name);

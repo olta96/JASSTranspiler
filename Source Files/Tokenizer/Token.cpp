@@ -13,4 +13,14 @@ namespace Tokenizer
 	{
 		return value;
 	}
+
+	bool Token::is(const std::string& toMatch) const
+	{
+		return value.getValue() == toMatch;
+	}
+
+	bool Token::is(const char& toMatch) const
+	{
+		return value.getValue()[0] == toMatch;
+	}
 }
