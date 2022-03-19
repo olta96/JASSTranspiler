@@ -130,6 +130,11 @@ If a compiler option is specified both in the `settings.json` file and as a comm
 
 If a compiler option is absent from both the `settings.json` file and the command line, its default value will be used as shown in the table above.
 
+To pass compiler options via the command line, write the compiler option name followed by its desired value, like so:
+```
+JASSTranspiler.exe sourceFolderPath jppSrc outFolderPath transpiled mainSourceFilename app
+```
+
 ## Using imports
 
 Imports are defined using the keyword `#import` followed by the semi-absolute path to the `.jpp` code file without `.jpp` file extension like such:
