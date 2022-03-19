@@ -6,6 +6,7 @@
 #include "Header Files/Utilities/UserOutput/UserOutput.h"
 #include "Header Files/Globals/Globals.h"
 #include "Header Files/EntityFactory/EntityFactory.h"
+#include <cassert>
 
 #ifdef _DEBUG
 #include <iostream>
@@ -58,6 +59,22 @@ void printTokensInListFormat(const Preprocessor::PreprocessedTokens& tokens)
 	}
 
 	cout << "]";
+}
+
+void printTypeEntities(const std::vector<const Entities::EType*>& types)
+{
+	for (const Entities::EType* const& eType : types)
+	{
+
+		if (const Entities::EClass* eClass = dynamic_cast<const Entities::EClass*>(eType); eClass != nullptr)
+			std::cout << "\t class ";
+		else
+			std::cout << "\t type ";
+		
+		assert(eType != nullptr);
+
+		std::cout << eType->getName() << "\n";
+	}
 }
 
 #endif
@@ -118,6 +135,12 @@ void transpile
 
 	EntityFactory::EntityFactory entityFactory(tokens);
 	entityFactory.buildEntities();
+
+
+#ifdef _DEBUG
+	const std::vector<const Entities::EType*>& genereatedTypes = entityFactory.getTypes();
+	printTypeEntities(genereatedTypes);
+#endif
 }
 
 
@@ -140,7 +163,7 @@ int main(const int commandLineCompilerOptionsCount, const char** commandLineComp
 	CompilerOptions::CompilerOptionsInterpreter compilerOptionsInterpreter(commandLineCompilerOptions, commandLineCompilerOptionsCount);
 	SourceBuilder::SourceBuilder sourceBuilder;
 	Preprocessor::Preprocessor preprocessor;
-
+	
 
 	try
 	{

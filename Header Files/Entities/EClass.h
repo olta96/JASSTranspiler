@@ -26,5 +26,7 @@ namespace Entities
 
 		bool getIsTemplate() const override;
 
+		void emplaceAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd);
+
 	};
 }

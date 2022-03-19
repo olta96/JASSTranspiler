@@ -21,7 +21,7 @@ namespace Preprocessor
 		const int& getLine() const;
 		const std::string& getFilePath() const;
 
-		const size_t& size() const;
+		const size_t size() const;
 
 #if _DEBUG
 		friend std::ostream& operator<<(std::ostream& os, const PreprocessedToken& preprocessedToken);

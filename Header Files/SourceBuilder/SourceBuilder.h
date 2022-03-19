@@ -11,6 +11,9 @@ namespace SourceBuilder
 		Merger merger;
 
 	public:
+		// IntelliSense wouldn't stop complaining that the default constructor of SourceBuilder was a "deleted function" so I added empty default constructor.
+		SourceBuilder();
+
 		const std::vector<SourceFile>& getSourceFiles(const CompilerOptions::CompilerOptions& compilerOptions);
 
 	};

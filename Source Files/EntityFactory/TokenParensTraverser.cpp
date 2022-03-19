@@ -28,7 +28,9 @@ namespace EntityFactory
 
 	bool TokenParensTraverser::operator++(int)
 	{
-		return ++*this;
+		bool temp = bracketCounter == 0;
+		++*this;
+		return temp;
 	}
 
 	Tokenizer::Tokens::const_iterator TokenParensTraverser::getTokenIt()

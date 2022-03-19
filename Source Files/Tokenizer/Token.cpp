@@ -16,11 +16,20 @@ namespace Tokenizer
 
 	bool Token::is(const std::string& toMatch) const
 	{
+		if (tokenType == TokenType::STRING || tokenType == TokenType::FOUR_CC)
+			return false;
+
 		return value.getValue() == toMatch;
 	}
 
 	bool Token::is(const char& toMatch) const
 	{
+		if (value.size() != 1)
+			return false;
+
+		if (tokenType == TokenType::STRING || tokenType == TokenType::FOUR_CC)
+			return false;
+
 		return value.getValue()[0] == toMatch;
 	}
 }

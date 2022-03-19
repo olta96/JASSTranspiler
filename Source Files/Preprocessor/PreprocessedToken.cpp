@@ -19,7 +19,7 @@ namespace Preprocessor
 		return filePath;
 	}
 
-	const size_t& PreprocessedToken::size() const
+	const size_t PreprocessedToken::size() const
 	{
 		return value.size();
 	}

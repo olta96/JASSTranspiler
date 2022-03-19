@@ -14,4 +14,9 @@ namespace Entities
 	{
 		return isTemplate;
 	}
+	
+	void EClass::emplaceAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd)
+	{
+		attributes.emplace_back(type, name, hasValue, valueBegin, valueEnd);
+	}
 }

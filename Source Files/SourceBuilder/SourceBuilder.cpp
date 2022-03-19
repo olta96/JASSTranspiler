@@ -4,6 +4,8 @@
 
 namespace SourceBuilder
 {
+	SourceBuilder::SourceBuilder() {}
+
 	const std::vector<SourceFile>& SourceBuilder::getSourceFiles(const CompilerOptions::CompilerOptions& compilerOptions)
 	{
 		using Utilities::UserOutput;

@@ -10,9 +10,10 @@ namespace Entities
 	{
 		const Tokenizer::Tokens::const_iterator valueBegin;
 		const Tokenizer::Tokens::const_iterator valueEnd;
+		bool hasValue;
 
 	public:
-		EAttribute(const EType& type, const std::string& name, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd);
+		EAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd);
 
 	};
 }

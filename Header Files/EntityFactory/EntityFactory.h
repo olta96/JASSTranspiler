@@ -11,22 +11,42 @@ namespace EntityFactory
 	{
 		const Tokenizer::Tokens& tokens;
 
-		const EType voidType;
-		const EType thistypeType;
-
 		std::vector<const EType*> types;
 		std::vector<std::string> renderedTemplates;
 
 		Tokenizer::Tokens::const_iterator tokenIt;
-		const Tokenizer::Tokens::const_iterator& end;
+		const Tokenizer::Tokens::const_iterator end;
+
+		const EType voidType;
+		const EType thistypeType;
 
 	public:
 		EntityFactory(const Tokenizer::Tokens& tokens);
 
 		void buildEntities();
 
+		const std::vector<const EType*>& getTypes() const;
+
 	private:
 		void buildClass();
+
+		bool doesOperatorOrStatementEndAppearBeforeParenOpen(const Tokenizer::Tokens::const_iterator& classTokensEnd) const;
+
+		bool doesKeywordPropertyAppearBeforeParenOpen(const Tokenizer::Tokens::const_iterator& classTokensEnd) const;
+
+		bool doesKeywordOperatorAppearBeforeParenOpen(const Tokenizer::Tokens::const_iterator& classTokensEnd) const;
+
+		void buildAttribute(EClass* const owner);
+
+		void buildProperty(EClass* const owner);
+		
+		void buildOperator(EClass* const owner);
+
+		void buildMethod(EClass* const owner);
+
+		const EType* emplaceType(const Tokenizer::Tokens::const_iterator& toEmplace);
+
+		const std::vector<const EType*>::const_iterator typeWithName(const std::string& name) const;
 
 	};
 }
