@@ -24,9 +24,13 @@ namespace Entities
 
 		void pushTemplateTypeName(const std::string& templateTypeName);
 
-		bool getIsTemplate() const override;
+		bool getIsTemplate() const;
 
-		void emplaceAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd);
+		const std::vector<std::string>& getTemplateTypeNames() const;
+
+		const std::vector<EAttribute>& getAttributes() const;
+
+		EAttribute* emplaceAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd);
 
 	};
 }

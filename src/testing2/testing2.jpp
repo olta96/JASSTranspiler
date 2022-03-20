@@ -12,7 +12,7 @@ if a < 26 {
 
 }
 
-class C   <   int, int<TKey>, _flex>
+class C   <   TTest, TKey, _flex>
 {
 
 }

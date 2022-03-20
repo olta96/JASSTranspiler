@@ -25,7 +25,7 @@ Foo
 */
 class Bar {
 
-    const Foo const foo;
+    const Foo foo;
 
 public:
 

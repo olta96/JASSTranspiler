@@ -8,7 +8,7 @@ namespace EntityFactory
 		: tokenIt(tokenIt), end(end)
 	{
 		assert(isParamOpen());
-		bracketCounter++;
+		++bracketCounter;
 	}
 
 	bool TokenParensTraverser::operator++()
@@ -23,7 +23,7 @@ namespace EntityFactory
 
 		assert(bracketCounter >= 0);
 
-		return bracketCounter == 0;
+		return bracketCounter != 0;
 	}
 
 	bool TokenParensTraverser::operator++(int)

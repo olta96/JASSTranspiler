@@ -14,9 +14,20 @@ namespace Entities
 	{
 		return isTemplate;
 	}
+
+	const std::vector<std::string>& EClass::getTemplateTypeNames() const
+	{
+		return templateTypeNames;
+	}
+
+	const std::vector<EAttribute>& EClass::getAttributes() const
+	{
+		return attributes;
+	}
 	
-	void EClass::emplaceAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd)
+	EAttribute* EClass::emplaceAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd)
 	{
 		attributes.emplace_back(type, name, hasValue, valueBegin, valueEnd);
+		return &attributes.back();
 	}
 }

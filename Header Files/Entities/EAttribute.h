@@ -14,6 +14,12 @@ namespace Entities
 
 	public:
 		EAttribute(const EType& type, const std::string& name, const bool& hasValue, const Tokenizer::Tokens::const_iterator& valueBegin, const Tokenizer::Tokens::const_iterator valueEnd);
+		
+		bool doesHaveValue() const;
+
+		Tokenizer::Tokens::const_iterator getValueBegin() const;
+
+		Tokenizer::Tokens::const_iterator getValueEnd() const;
 
 	};
 }

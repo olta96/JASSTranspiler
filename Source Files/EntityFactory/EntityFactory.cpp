@@ -48,6 +48,25 @@ namespace EntityFactory
 		++tokenIt;
 		assert(tokenIt->is(PAREN_CURLY_OPEN) || tokenIt->is(PAREN_ANGLE_OPEN));
 
+		if (tokenIt->is(PAREN_ANGLE_OPEN))
+		{
+			TokenParensTraverser classTokenParensTraverser(tokenIt, end);
+			while (++classTokenParensTraverser)
+			{
+				if (!classTokenParensTraverser.cgetTokenIt()->is(SYM_COMMA))
+				{
+					assert(classTokenParensTraverser.cgetTokenIt()->getTokenType() == TokenType::IDENTIFIER);
+
+					eClass->pushTemplateTypeName(classTokenParensTraverser.cgetTokenIt()->getValue().getValue());
+				}
+			}
+
+			tokenIt = classTokenParensTraverser.getTokenIt();
+			assert(tokenIt->is(PAREN_ANGLE_CLOSE));
+			++tokenIt;
+			assert(tokenIt->is(PAREN_CURLY_OPEN));
+		}
+
 		TokenParensTraverser classTokenParensTraverser(tokenIt, end);
 
 		while (++classTokenParensTraverser);
@@ -68,16 +87,16 @@ namespace EntityFactory
 			}
 
 			else if (doesOperatorOrStatementEndAppearBeforeParenOpen(classTokensEnd))
-				buildAttribute(eClass);
+				buildAttribute(eClass, isPublic);
 
 			else if (doesKeywordPropertyAppearBeforeParenOpen(classTokensEnd))
-				buildProperty(eClass);
+				buildProperty(eClass, isPublic);
 
 			else if (doesKeywordOperatorAppearBeforeParenOpen(classTokensEnd))
-				buildOperator(eClass);
+				buildOperator(eClass, isPublic);
 
 			else
-				buildMethod(eClass);
+				buildMethod(eClass, isPublic);
 		}
 
 		types.emplace_back(eClass);
@@ -122,14 +141,17 @@ namespace EntityFactory
 		return false;
 	}
 
-	void EntityFactory::buildAttribute(EClass* const owner)
+	void EntityFactory::buildAttribute(EClass* const owner, const bool& isPublic)
 	{
 		bool isStatic = false;
+		bool isConst = false;
 
-		if (tokenIt->is(KW_STATIC))
+		for (; isTokenItAttributeModifier(); ++tokenIt)
 		{
-			isStatic = true;
-			++tokenIt;
+			if (tokenIt->is(KW_STATIC))
+				isStatic = true;
+			else if (tokenIt->is(KW_CONST))
+				isConst = true;
 		}
 
 		assert(tokenIt->getTokenType() == TokenType::IDENTIFIER && (tokenIt + 1)->getTokenType() == TokenType::IDENTIFIER);
@@ -139,9 +161,11 @@ namespace EntityFactory
 		++tokenIt;
 		const std::string& name = tokenIt->getValue().getValue();
 
+		EAttribute* eAttribute;
+
 		++tokenIt;
 		if (tokenIt->getTokenType() == TokenType::STATEMENT_END)
-			owner->emplaceAttribute(*eType, name, false, tokenIt, tokenIt);
+			eAttribute = owner->emplaceAttribute(*eType, name, false, tokenIt, tokenIt);
 		else
 		{
 			assert(tokenIt->is(SS_OP_ASSIGN));
@@ -151,23 +175,27 @@ namespace EntityFactory
 			while (tokenIt->getTokenType() != TokenType::STATEMENT_END) ++tokenIt;
 			const Tokenizer::Tokens::const_iterator valueEnd = tokenIt;
 
-			owner->emplaceAttribute(*eType, name, true, valueBegin, valueEnd);
+			eAttribute = owner->emplaceAttribute(*eType, name, true, valueBegin, valueEnd);
 		}
+
+		eAttribute->setPublic(isPublic);
+		eAttribute->setStatic(isStatic);
+		eAttribute->setConst(isConst);
 	}
 
-	void EntityFactory::buildProperty(EClass* const owner)
+	void EntityFactory::buildProperty(EClass* const owner, const bool& isPublic)
 	{
-
+		while (!tokenIt->is(PAREN_CURLY_CLOSE)) ++tokenIt; // TODO
 	}
 
-	void EntityFactory::buildOperator(EClass* const owner)
+	void EntityFactory::buildOperator(EClass* const owner, const bool& isPublic)
 	{
-
+		while (!tokenIt->is(PAREN_CURLY_CLOSE)) ++tokenIt; // TODO
 	}
 
-	void EntityFactory::buildMethod(EClass* const owner)
+	void EntityFactory::buildMethod(EClass* const owner, const bool& isPublic)
 	{
-
+		while (!tokenIt->is(PAREN_CURLY_CLOSE)) ++tokenIt; // TODO
 	}
 
 	const EType* EntityFactory::emplaceType(const Tokenizer::Tokens::const_iterator& toEmplace)
@@ -187,5 +215,10 @@ namespace EntityFactory
 	const std::vector<const EType*>::const_iterator EntityFactory::typeWithName(const std::string& name) const
 	{
 		return std::find_if(types.cbegin(), types.cend(), [&](const EType* const& eType) { return eType->getName() == name; });
+	}
+	
+	bool EntityFactory::isTokenItAttributeModifier() const
+	{
+		return tokenIt->is(KW_STATIC) || tokenIt->is(KW_CONST);
 	}
 }

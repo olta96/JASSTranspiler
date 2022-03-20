@@ -36,17 +36,19 @@ namespace EntityFactory
 
 		bool doesKeywordOperatorAppearBeforeParenOpen(const Tokenizer::Tokens::const_iterator& classTokensEnd) const;
 
-		void buildAttribute(EClass* const owner);
+		void buildAttribute(EClass* const owner, const bool& isPublic);
 
-		void buildProperty(EClass* const owner);
+		void buildProperty(EClass* const owner, const bool& isPublic);
 		
-		void buildOperator(EClass* const owner);
+		void buildOperator(EClass* const owner, const bool& isPublic);
 
-		void buildMethod(EClass* const owner);
+		void buildMethod(EClass* const owner, const bool& isPublic);
 
 		const EType* emplaceType(const Tokenizer::Tokens::const_iterator& toEmplace);
 
 		const std::vector<const EType*>::const_iterator typeWithName(const std::string& name) const;
+
+		bool isTokenItAttributeModifier() const;
 
 	};
 }

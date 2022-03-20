@@ -10,6 +10,7 @@
 
 #ifdef _DEBUG
 #include <iostream>
+#include <algorithm>
 #endif
 
 
@@ -63,17 +64,56 @@ void printTokensInListFormat(const Preprocessor::PreprocessedTokens& tokens)
 
 void printTypeEntities(const std::vector<const Entities::EType*>& types)
 {
-	for (const Entities::EType* const& eType : types)
+	std::vector<const Entities::EType*> typesCopy = types;
+
+	std::sort
+	(
+		typesCopy.begin(),
+		typesCopy.end(),
+		[](const Entities::EType* eTypeA, const Entities::EType* eTypeB)
+		{
+			return !dynamic_cast<const Entities::EClass*>(eTypeA) && dynamic_cast<const Entities::EClass*>(eTypeB);
+		}
+	);
+
+	for (const Entities::EType* const& eType : typesCopy)
 	{
-
-		if (const Entities::EClass* eClass = dynamic_cast<const Entities::EClass*>(eType); eClass != nullptr)
-			std::cout << "\t class ";
-		else
-			std::cout << "\t type ";
-		
 		assert(eType != nullptr);
-
-		std::cout << eType->getName() << "\n";
+		if (const Entities::EClass* eClass = dynamic_cast<const Entities::EClass*>(eType); eClass != nullptr)
+		{
+			std::cout << "  class " << eClass->getName();
+			if (eClass->getIsTemplate())
+			{
+				std::cout << "<";
+				for (const std::string& templateTypeName : eClass->getTemplateTypeNames())
+					std::cout << templateTypeName << ",";
+				std::cout << ">";
+			}
+			std::cout << " {\n";
+			for (const Entities::EAttribute& attribute : eClass->getAttributes())
+			{
+				std::cout << "    " << (attribute.getIsPublic() ? "public " : "private ")
+					<< (attribute.getIsStatic() ? "static " : "")
+					<< (attribute.getIsConst() ? "const " : "")
+					<< attribute.getName();
+				if (attribute.doesHaveValue())
+				{
+					std::cout << "=";
+					for (Tokenizer::Tokens::const_iterator it = attribute.getValueBegin(); it != attribute.getValueEnd(); ++it)
+					{
+						if (it->getTokenType() == Tokenizer::TokenType::KEYWORD || it->getTokenType() == Tokenizer::TokenType::IDENTIFIER)
+							std::cout << " ";
+						std::cout << it->getValue().getValue();
+					}
+				}
+				std::cout << ";\n";
+			}
+			std::cout << "  }\n\n";
+		}
+		else
+		{
+			std::cout << "  type " << eType->getName() << "\n\n";
+		}
 	}
 }
 
