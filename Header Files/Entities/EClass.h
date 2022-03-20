@@ -24,7 +24,7 @@ namespace Entities
 
 		void pushTemplateTypeName(const std::string& templateTypeName);
 
-		bool getIsTemplate() const;
+		bool getIsTemplate() const override;
 
 		const std::vector<std::string>& getTemplateTypeNames() const;
 
